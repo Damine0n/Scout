@@ -1,0 +1,114 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from DistributionOrderService WSDL service -->
+
+  <service name="DistributionOrderServiceHttpSoap11Endpoint" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service.cbo.services.wmos.manh.com"/>
+      <parameter name="wsdlServiceElement" value="DistributionOrderService"/>
+      <parameter name="schemaQualified" value="http://io.java/xsd,http://purchaseorder.data.cbo.scope.manh.com/xsd,http://distributionorder.data.cbo.scope.manh.com/xsd,http://common.data.cbo.scope.manh.com/xsd,http://validation.common.services.scope.manh.com/xsd,http://service.cbo.services.wmos.manh.com"/>
+      <parameter name="wsdlServicePort" value="DistributionOrderServiceHttpSoap11Endpoint"/>
+      <parameter name="className" value="com.manh.wmos.services.cbo.service.DistributionOrderServiceSoap11BindingSkeleton"/>
+      <parameter name="wsdlPortType" value="DistributionOrderServicePortType"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <parameter name="allowedMethods" value="*"/>
+
+      <typeMapping
+        xmlns:ns="http://distributionorder.data.cbo.scope.manh.com/xsd"
+        qname="ns:UpdateableDOData"
+        type="java:com.manh.scope.cbo.data.distributionorder.xsd.UpdateableDOData"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://distributionorder.data.cbo.scope.manh.com/xsd"
+        qname="ns:DistributionOrderData"
+        type="java:com.manh.scope.cbo.data.distributionorder.xsd.DistributionOrderData"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://validation.common.services.scope.manh.com/xsd"
+        qname="ns:ValidationResult"
+        type="java:com.manh.scope.services.common.validation.xsd.ValidationResult"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://purchaseorder.data.cbo.scope.manh.com/xsd"
+        qname="ns:PurchaseOrderKey"
+        type="java:com.manh.scope.cbo.data.purchaseorder.xsd.PurchaseOrderKey"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://validation.common.services.scope.manh.com/xsd"
+        qname="ns:ValidationMessage"
+        type="java:com.manh.scope.services.common.validation.xsd.ValidationMessage"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://common.data.cbo.scope.manh.com/xsd"
+        qname="ns:LineItemData"
+        type="java:com.manh.scope.cbo.data.common.xsd.LineItemData"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://common.data.cbo.scope.manh.com/xsd"
+        qname="ns:AddressData"
+        type="java:com.manh.scope.cbo.data.common.xsd.AddressData"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://common.data.cbo.scope.manh.com/xsd"
+        qname="ns:ContactData"
+        type="java:com.manh.scope.cbo.data.common.xsd.ContactData"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://io.java/xsd"
+        qname="ns:Serializable"
+        type="java:java.io.xsd.Serializable"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://distributionorder.data.cbo.scope.manh.com/xsd"
+        qname="ns:DistributionOrderEnquiryData"
+        type="java:com.manh.scope.cbo.data.distributionorder.xsd.DistributionOrderEnquiryData"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://distributionorder.data.cbo.scope.manh.com/xsd"
+        qname="ns:DistributionOrderKey"
+        type="java:com.manh.scope.cbo.data.distributionorder.xsd.DistributionOrderKey"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>
