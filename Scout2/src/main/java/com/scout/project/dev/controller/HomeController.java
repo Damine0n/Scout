@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.scout.project.dev.entity.App;
 import com.scout.project.dev.entity.LoginInfo;
 import com.scout.project.dev.service.QueryService;
 
@@ -33,6 +34,8 @@ public class HomeController {
 	
 	@RequestMapping("/Home")
 	public String showLogin(){
+		List<App> apps = queryService.getApps();
+		
 		return "MIF-login";
 	}
 	
@@ -50,6 +53,7 @@ public class HomeController {
 			System.out.println("Connecting to database: "+ jdbc2);
 			//Connection connection = DriverManager.getConnection(jdbc2,userName,password);
 			Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@fd-dcomsdev1.floordecor.com:1521/FAQMANH.floordecor.com",userName,password);
+			connection.createStatement();
 			connection.close();
 			model.addAttribute("userName",userName);
 			model.addAttribute("passWord",password);

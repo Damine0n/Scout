@@ -3,11 +3,19 @@ package com.scout.project.dev.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.TypedQuery;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.scout.project.dev.entity.App;
 import com.scout.project.dev.entity.LoginInfo;
 
 @Repository
@@ -16,7 +24,30 @@ public class QueryDAOImpl implements QueryDAO {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
+	@Autowired
+	private SessionFactory sessionFactory;
 	private String driver = "oracle.jdbc.OracleDriver";
+	
+	public QueryDAOImpl() {
+	}
+
+	
+	
+	@Override
+	public List<App> getApps(){
+		//get current session
+		Session session = sessionFactory.getCurrentSession();
+		
+		//create query and sort by last name
+		Query<App> query =  session.createQuery("from app Order by app_id",App.class);
+
+		//execute query
+		List<App> apps = query.getResultList();
+		
+		//return results*/
+		return new ArrayList<App>();
+		
+	}
 		
 	@Override
 	public Object runQuery(String queryStatement,LoginInfo loginInfo) {

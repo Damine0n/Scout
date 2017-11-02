@@ -8,14 +8,21 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.scout.project.dev.dao.QueryDAO;
+import com.scout.project.dev.entity.App;
 import com.scout.project.dev.entity.LoginInfo;
 
 
 @Service
 public class QueryServiceImpl implements QueryService {
 	//Inject DAO
-		@Autowired
-		private QueryDAO queryDAO;
+	@Autowired
+	private QueryDAO queryDAO;
+	
+	@Override
+	@Transactional
+	public List<App> getApps(){
+		return queryDAO.getApps();
+	}
 
 	@Override
 	@Transactional
